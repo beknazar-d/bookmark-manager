@@ -1,0 +1,39 @@
+.navi_btn{
+    width: 100%;
+    height: fit-content;
+    color: var(--color-neutral-900);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    justify-content: space-between;
+    background-color: var(--color-neutral-0);
+    border-radius: var(--radius-6);
+    .navi_inner_section{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+
+    }
+    .navi_number{
+        background-color: var(--color-neutral-100);
+        border-radius: var(--radius-full);
+        padding: 2px 8px;
+        box-shadow: inset 0 0 0 1px var(--color-neutral-300);
+        font-size: var(--font-size-5);
+        list-style: var(--line-height-1);
+        font-weight: var(--font-weight-medium);
+    }
+}
+.navi_btn:hover{
+    background-color: var(--color-neutral-400);
+    color: var(--color-neutral-0);
+    .navi_inner_section img{
+        filter: brightness(100);
+    }
+    .navi_number{
+        background-color: none;
+        box-shadow: none;
+    }
+}
