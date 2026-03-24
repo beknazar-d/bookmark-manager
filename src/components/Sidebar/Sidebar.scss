@@ -1,0 +1,36 @@
+.sidebar{
+    width: 296px;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-neutral-0);
+    &__header{
+        padding-left: 20px;
+    }
+    
+    &__logo{
+        display: block;
+        height: 32px;
+        box-sizing: border-box;
+    }
+    &__selectors{
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    &__tags{
+        span{
+            text-align: left;
+            float: left;
+            margin-left: 10px;
+            font-size: var(--font-size-5);
+            
+        
+        }
+        ul{
+            padding-left: 0;
+            li{list-style: none;}
+        }
+    }
+}
