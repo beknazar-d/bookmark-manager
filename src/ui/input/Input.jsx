@@ -1,16 +1,19 @@
 import './Input.scss';
-import searchIcon from '../../assets/images/icon-search.svg';
 
 
-const Input =()=>{
+const Input = () => {
 
     return (
 
-        <div className='input-field'>
-            <div className='input-field__icon'>
-                <img src={searchIcon} alt="search-icon" />
+        <div class="field">
+            <label >URL <span>*</span></label>
+            <div class="input-wrapper">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                </svg>
+                <input name='search' type="text" placeholder="Search" />
             </div>
-        <input name='search-input' className='search_input' placeholder='Search'/>
         </div>
 
     )
