@@ -20,7 +20,7 @@ const Button = ({ icon, variant, text,size,onClick, iconOnly, disabled }) => {
                 <>
                     {icon && <img src={icon} alt="icon" />}
                     <span>{text}</span>
-                    {icon && <img src={icon} alt="icon" />}
+                    
                 </>
             )}
         </button>
