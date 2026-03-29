@@ -1,7 +1,7 @@
 .navi_btn {
     width: 100%;
     height: fit-content;
-    color: var(--color-neutral-900);
+    color: var(--cursor-color);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +32,7 @@
 
 .navi_btn:hover {
     background-color: var(--color-neutral-400);
-    color: var(--color-neutral-0);
+    color: white;
 
     .navi_inner_section img {
         filter: brightness(100);
@@ -78,5 +78,10 @@
             height: 20px;
             filter: brightness(8) invert(0.4);
         }
+    }
+}
+.toast:hover{
+    span{
+        color: white;
     }
 }

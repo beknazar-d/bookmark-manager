@@ -1,5 +1,5 @@
 .dropdown{
-    width: fit-content;
+    width: 184px;
     height: fit-content;
     padding: 8px 8px;
     display: flex;
@@ -7,15 +7,21 @@
     align-items: center;
     justify-content: space-between;
     border-radius: var(--radius-6);
-    background-color: var(--color-neutral-500);
-    color: var(--color-neutral-800);
+    background-color: transparent;
+    color: var(--cursor-color);
     font-size: var(--font-size-4);
     gap: 10px;
+
     .dropdown_left{
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 10px;
+        gap: 4px;
+        img{
+            width: 20px;
+            height: 20px;
+            filter: var(--color-icon);
+        }
         span{
             width: 132px;
             text-align: start;
@@ -24,4 +30,5 @@
 }
 .dropdown:hover{
     background-color: white;
+    color: black;
 }

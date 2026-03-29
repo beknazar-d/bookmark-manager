@@ -112,3 +112,29 @@
         }
     }
 }
+
+.card-dropdown{
+    width: 220px;
+    height: 228px;
+    position: absolute;
+    right:30px;
+    top:45px;
+    background-color: var(--color-neutral-600);
+    border-radius: 8px;
+    ul{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        align-items: center;
+        gap: 4px;
+        padding: 0;
+        li{
+            list-style: none;
+            
+        }
+    }
+}
+
+.hide{
+    display: none;
+}
