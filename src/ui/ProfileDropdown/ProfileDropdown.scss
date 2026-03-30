@@ -1,0 +1,111 @@
+.profile {
+    width: 248px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--color-neutral-0);
+    font-size: 14px;
+    border-radius: 8px;
+    gap: 4px;
+    right: 32px;
+    top: 80px;
+    z-index: 2;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+
+    &--show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    &__header {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        padding: 12px 16px;
+        box-sizing: border-box;
+        gap: 12px;
+        text-align: start;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+
+            span {
+                color: var(--cursor-color);
+            }
+
+            h3 {
+                color: var(--cursor-color);
+                margin: 0;
+            }
+        }
+
+    }
+
+    &__theme {
+        border-top: 1px solid #E9EAEB;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        box-sizing: border-box;
+
+        &__left {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            img {
+                width: 16px;
+                height: 16px;
+                filter: var(--color-icon);
+            }
+        }
+
+        &__right {}
+    }
+
+    &__log {
+        border-top: 1px solid #E9EAEB;
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 16px;
+        box-sizing: border-box;
+
+        img {
+            width: 16px;
+            height: 16px;
+            filter: var(--color-icon);
+        }
+
+        gap: 10px;
+    }
+
+}
+
+.profile-hide {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+}
