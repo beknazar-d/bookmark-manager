@@ -18,7 +18,7 @@ const Button = ({ icon, variant, text,size,onClick, iconOnly, disabled }) => {
                 icon
             ) : (
                 <>
-                    {icon && <img src={icon} alt="icon" />}
+                    {icon && <img className='btns__icon' src={icon} alt="icon" />}
                     <span>{text}</span>
                     
                 </>

@@ -16,7 +16,9 @@
         flex-direction: row;
         align-items: center;
         gap: 8px;
-
+        img{
+            filter: var(--color-icon);
+        }
     }
 
     .navi_number {
@@ -31,12 +33,10 @@
 }
 
 .navi_btn:hover {
-    background-color: var(--color-neutral-400);
-    color: white;
+    background-color: var(--color-hover);
+    color: var(--cursor-color);
 
-    .navi_inner_section img {
-        filter: brightness(100);
-    }
+    
 
     .navi_number {
         background-color: none;

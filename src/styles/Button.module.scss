@@ -9,6 +9,9 @@
     border-radius: var(--radius-8);
     gap: 4px;
     box-sizing: border-box;
+    img{
+        filter:var(--color-icon);
+    }
 }
 
 .primary_btn {
@@ -16,9 +19,8 @@
     background-color: var(--color-teal-700);
     border: 1px solid var(--border-color);
 
-
-    img {
-        filter: brightness(0) invert(1);
+    .btns__icon {
+        filter: var(--color-icon);
         width: 20px;
         height: 20px;
     }
@@ -43,7 +45,7 @@
     border: 1px solid var(--color-teal-700);
 
     img {
-        filter: invert(6%) brightness(20%);
+        filter: var(--color-icon);
         width: 20px;
         height: 20px;
     }

@@ -31,4 +31,9 @@
 .dropdown:hover{
     background-color: white;
     color: black;
+    .dropdown_left{
+        img{
+            filter: brightness(0);
+        }
+    }
 }
