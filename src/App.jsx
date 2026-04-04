@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import { Routes,Route } from 'react-router-dom';
 import './App.css'
 import './styles/variables.scss';
 import store from './store/store';
@@ -9,10 +10,14 @@ function App() {
 
   return (
     <Provider store={store}>
-    <div className='App'>
-        <Sidebar/>
-        <Main/>
-    </div>
+      <Routes>
+        <Route path='/' element={
+          <div className='App'>
+          <Sidebar/>
+          <Main/>
+        </div>
+        }/>
+      </Routes>
     </Provider>
   )
 }

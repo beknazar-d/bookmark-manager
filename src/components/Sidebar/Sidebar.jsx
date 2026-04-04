@@ -23,7 +23,7 @@ useEffect(() => {
             </header>
             <section className='sidebar__selectors'>
             <NaviItem variant={'navi'}/>
-            <NaviItem variant={'navi'} icon={archive}/>
+            <NaviItem variant={'navi'} text={'Archive'} icon={archive}/>
             </section>
             <section className='sidebar__tags'>
             <span>TAGS</span>
