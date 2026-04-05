@@ -1,40 +1,161 @@
 import './Login.scss';
 import logo from '../../assets/images/logo-light-theme.svg';
-
+import darklogo from '../../assets/images/logo-dark-theme.svg';
+import Button from '../Button/Button';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 const Login = () => {
+    const [dark] = useState(document.documentElement.getAttribute('data-theme'));
+    const [variant, setVariant] = useState('login');
 
-    return (
+    const {
+        register: registerLogin,
+        handleSubmit: handleLoginSubmit,
+        formState: { errors: loginErrors },
+    } = useForm();
 
-        <div className='login'>
-            <section className='login__header'>
-                <img src={logo} alt="logo" />
-                <h1>Log in your account</h1>
-                <span>Welcome back! Please enter your details.</span>
+    const {
+        register: registerSignup,
+        handleSubmit: handleSignupSubmit,
+        formState: { errors: signupErrors },
+    } = useForm();
+
+    const onLogin = (data) => {
+        console.log('Login data:', data);
+    };
+
+    const onRegister = (data) => {
+        console.log('Register data:', data);
+    };
+
+    const register = (
+        <div className='register-form'>
+            <section className='register-form__header'>
+                <img src={dark ? darklogo : logo} alt="logo" />
+                <h3>Create your account</h3>
+                <span>Join us and start saving your favorite links — organized, searchable, and always within reach.</span>
             </section>
-            <section className='login__inputs'>
-                <div>
-                    <label htmlFor="">Email</label>
-                    <input type="text" />
+
+            <section className='register-form__fields'>
+                <div className='register-form__field'>
+                    <label>Full name *</label>
+                    <input
+                        type="text"
+                        placeholder='Your name'
+                        {...registerSignup('name', {
+                            required: 'Full name is required',
+                        })}
+                    />
+                    {signupErrors.name && <span className='field-error'>{signupErrors.name.message}</span>}
                 </div>
-                <div>
-                    <label htmlFor="">Password</label>
-                    <input type="text" />
+
+                <div className='register-form__field'>
+                    <label>Email address *</label>
+                    <input
+                        type="text"
+                        placeholder='name@example.com'
+                        {...registerSignup('email', {
+                            required: 'Email is required',
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Enter a valid email address',
+                            },
+                        })}
+                    />
+                    {signupErrors.email && <span className='field-error'>{signupErrors.email.message}</span>}
                 </div>
-                
+
+                <div className='register-form__field'>
+                    <label>Password *</label>
+                    <input
+                        type="password"
+                        placeholder='Min 8 characters'
+                        {...registerSignup('password', {
+                            required: 'Password is required',
+                            minLength: {
+                                value: 8,
+                                message: 'Must be at least 8 characters long',
+                            },
+                        })}
+                    />
+                    {signupErrors.password && <span className='field-error'>{signupErrors.password.message}</span>}
+                </div>
+
+                <Button
+                    size='large'
+                    text='Create account'
+                    variant='primary'
+                    onClick={handleSignupSubmit(onRegister)}
+                />
             </section>
-            <section className='login__footer'>
+
+            <section className='register-form__footer'>
                 <div>
-                    <span>Forgot password?</span>
-                    <button>Reset it</button>
-                </div>
-                <div>
-                    <span>Don't have an account?</span>
-                    <span>Sing up</span>
+                    <span>Already have an account?</span>
+                    <button type='button' onClick={() => setVariant('login')}>Log in</button>
                 </div>
             </section>
         </div>
-    )
+    );
+
+    const login = (
+        <div className='login'>
+            <section className='login__header'>
+                <img src={dark ? darklogo : logo} alt="logo" />
+                <h3>Log in your account</h3>
+                <span>Welcome back! Please enter your details.</span>
+            </section>
+
+            <section className='login__inputs'>
+                <div className='login__inputs__field'>
+                    <label>Email</label>
+                    <input
+                        type="text"
+                        {...registerLogin('email', {
+                            required: 'Email is required',
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Enter a valid email address',
+                            },
+                        })}
+                    />
+                    {loginErrors.email && <span className='field-error'>{loginErrors.email.message}</span>}
+                </div>
+
+                <div className='login__inputs__field'>
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        {...registerLogin('password', {
+                            required: 'Password is required',
+                        })}
+                    />
+                    {loginErrors.password && <span className='field-error'>{loginErrors.password.message}</span>}
+                </div>
+
+                <Button
+                    size='large'
+                    variant='primary'
+                    text='Log in'
+                    onClick={handleLoginSubmit(onLogin)}
+                />
+            </section>
+
+            <section className='login__footer'>
+                <div>
+                    <span>Forgot password?</span>
+                    <button type='button'>Reset it</button>
+                </div>
+                <div>
+                    <span>Don't have an account?</span>
+                    <button type='button' onClick={() => setVariant('register')}>Sign up</button>
+                </div>
+            </section>
+        </div>
+    );
+
+    return variant === 'login' ? login : register;
 };
 
 export default Login;

@@ -16,9 +16,13 @@
 
 .primary_btn {
     border-radius: var(--radius-8);
-    background-color: var(--color-teal-700);
-    border: 1px solid var(--border-color);
-
+    background-color: var(--color-teal-800);
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
     .btns__icon {
         filter: var(--color-icon);
         width: 20px;
@@ -27,9 +31,9 @@
 }
 
 .primary_btn:hover {
-    background-color: var(--color-teal-800);
+    background-color: var(--color-teal-700);
     border: var(--border-color);
-    border-radius: 8px;
+    border: none;
 }
 
 .primary_btn:focus {
@@ -91,4 +95,7 @@
 
 .md {
     font-size: var(--font-size-3);
+}
+.large{
+    width: 100%;
 }

@@ -1,6 +1,6 @@
 import styles from '../../styles/Button.module.scss';
 
-const Button = ({ icon, variant, text,size,onClick, iconOnly, disabled }) => {
+const Button = ({ icon, iconNone, variant, text, size, onClick, iconOnly, disabled }) => {
 
     const variantClasses = {
         primary: styles.primary_btn,
@@ -12,17 +12,20 @@ const Button = ({ icon, variant, text,size,onClick, iconOnly, disabled }) => {
         <button
             onClick={onClick}
             disabled={disabled}
-            className={`${styles.btns} ${variantClasses[variant]} ${styles[size]} `}
+            className={`${styles.btns} ${variantClasses[variant]} ${styles[size]}`}
         >
-            {iconOnly ? (
-                icon
-            ) : (
-                <>
-                    {icon && <img className='btns__icon' src={icon} alt="icon" />}
-                    <span>{text}</span>
-                    
-                </>
-            )}
+            {
+                iconNone ? (<><span>{text}</span></>) : (
+                    iconOnly ? (
+                        icon
+                    ) : (
+                        <>
+                            {icon && <img className='btns__icon' src={icon} alt="icon" />}
+                            <span>{text}</span>
+                        </>
+                    )
+                )
+            }
         </button>
     );
 };
