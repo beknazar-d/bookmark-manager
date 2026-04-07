@@ -4,32 +4,47 @@ import darklogo from '../../assets/images/logo-dark-theme.svg';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { login as loginAction, register as registerAction } from '../../store/slices/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [dark] = useState(document.documentElement.getAttribute('data-theme'));
     const [variant, setVariant] = useState('login');
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const error = useSelector(state=> state.auth.error);
+    const user = useSelector(state=>state.user)
+    console.log(user);
+    
     const {
-        register: registerLogin,
+        register: registerLoginField,
         handleSubmit: handleLoginSubmit,
         formState: { errors: loginErrors },
     } = useForm();
 
     const {
-        register: registerSignup,
+        register: registerSignupField,
         handleSubmit: handleSignupSubmit,
         formState: { errors: signupErrors },
     } = useForm();
 
-    const onLogin = (data) => {
-        console.log('Login data:', data);
+    const onLogin = async (data) => {
+    const result = await dispatch(loginAction(data));
+    if (result.meta.requestStatus === 'fulfilled') {
+        navigate('/home'); // было '/' → стало '/home'
+    }
+};
+
+    const onRegister = async (data) => {
+        const result = await dispatch(registerAction(data));
+        if (result.meta.requestStatus === 'fulfilled') {
+            navigate('/');
+        }
     };
 
-    const onRegister = (data) => {
-        console.log('Register data:', data);
-    };
-
-    const register = (
+    const registerForm = (
         <div className='register-form'>
             <section className='register-form__header'>
                 <img src={dark ? darklogo : logo} alt="logo" />
@@ -43,7 +58,7 @@ const Login = () => {
                     <input
                         type="text"
                         placeholder='Your name'
-                        {...registerSignup('name', {
+                        {...registerSignupField('name', {
                             required: 'Full name is required',
                         })}
                     />
@@ -55,7 +70,7 @@ const Login = () => {
                     <input
                         type="text"
                         placeholder='name@example.com'
-                        {...registerSignup('email', {
+                        {...registerSignupField('email', {
                             required: 'Email is required',
                             pattern: {
                                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -71,7 +86,7 @@ const Login = () => {
                     <input
                         type="password"
                         placeholder='Min 8 characters'
-                        {...registerSignup('password', {
+                        {...registerSignupField('password', {
                             required: 'Password is required',
                             minLength: {
                                 value: 8,
@@ -82,9 +97,11 @@ const Login = () => {
                     {signupErrors.password && <span className='field-error'>{signupErrors.password.message}</span>}
                 </div>
 
+                {error && <span className='field-error'>{error}</span>}
+
                 <Button
                     size='large'
-                    text='Create account'
+                    text={status === 'loading' ? 'Loading...' : 'Create account'}
                     variant='primary'
                     onClick={handleSignupSubmit(onRegister)}
                 />
@@ -99,7 +116,7 @@ const Login = () => {
         </div>
     );
 
-    const login = (
+    const loginForm = (
         <div className='login'>
             <section className='login__header'>
                 <img src={dark ? darklogo : logo} alt="logo" />
@@ -112,7 +129,7 @@ const Login = () => {
                     <label>Email</label>
                     <input
                         type="text"
-                        {...registerLogin('email', {
+                        {...registerLoginField('email', {
                             required: 'Email is required',
                             pattern: {
                                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -127,17 +144,19 @@ const Login = () => {
                     <label>Password</label>
                     <input
                         type="password"
-                        {...registerLogin('password', {
+                        {...registerLoginField('password', {
                             required: 'Password is required',
                         })}
                     />
                     {loginErrors.password && <span className='field-error'>{loginErrors.password.message}</span>}
                 </div>
 
+                {error && <span className='field-error'>{error}</span>}
+
                 <Button
                     size='large'
                     variant='primary'
-                    text='Log in'
+                    text={status === 'loading' ? 'Loading...' : 'Log in'}
                     onClick={handleLoginSubmit(onLogin)}
                 />
             </section>
@@ -149,13 +168,16 @@ const Login = () => {
                 </div>
                 <div>
                     <span>Don't have an account?</span>
-                    <button type='button' onClick={() => setVariant('register')}>Sign up</button>
+                    <button type='button' onClick={() => {
+                        setVariant('register')
+                        }
+                    }>Sign up</button>
                 </div>
             </section>
         </div>
     );
 
-    return variant === 'login' ? login : register;
+    return variant === 'login' ? loginForm : registerForm;
 };
 
 export default Login;

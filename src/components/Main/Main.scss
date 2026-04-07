@@ -52,6 +52,9 @@
             background-color: var(--color-neutral-0);
             border-radius: 8px;
             border: 1px solid var(--color-neutral-400);
+            img{
+                filter:var(--color-icon);
+            }
         }
     }
 
