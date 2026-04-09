@@ -1,17 +1,26 @@
 import './Input.scss';
-
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { searchByName } from '../../store/slices/slice';
 const Input = () => {
 
+    const dispatch=useDispatch();
+    const [text,setText] = useState('');
+
+    
+    
     return (
 
-        <div class="field">
-            <div class="input-wrapper">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div className="field">
+            <div className="input-wrapper">
+                <svg className="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="11" cy="11" r="8" />
                     <path d="m21 21-4.35-4.35" />
                 </svg>
-                <input name='search' type="text" placeholder="Search" />
+                <input onChange={(e)=>{
+                    setText(e.target.value)
+                    dispatch(searchByName(e.target.value))
+                    }} value={text} name='search' type="text" placeholder="Search" />
             </div>
         </div>
 

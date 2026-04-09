@@ -25,7 +25,7 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
             <ul>
                 {
                     list.map((item,i)=>{
-                        return <Dropdown icon={icons[i]} text={item}/>
+                        return <Dropdown key={item+i} icon={icons[i]} text={item}/>
                     })
                 }
             </ul>
@@ -52,7 +52,7 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
                     challenges whilst working to professional designs. `}
                 </p>
                     <div >
-                        {tags.map((item,i)=>{
+                        {tags?.map((item,i)=>{
                             return <button key={i} className='card__content__btn'>{item}</button>
                         })}
                     </div>
