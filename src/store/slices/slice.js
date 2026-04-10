@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { changeFormat } from "../../utils/timeHelper";
 const initialState = {
-    allCards: null,
-    cards: null,
-    filteredCards: null,
+    allCards: [],
+    cards: [],
+    filteredCards: [],
     activeSelector: '',
+    searchedItem:null,
+    sortName:'',
     status: 'idle',
     error: null
 }
@@ -33,12 +35,18 @@ const cardsSlice = createSlice({
         },
         searchByName: (state, action) => {
             if (!action.payload) {
-                state.filteredCards = null 
+                state.filteredCards = []
                 return
             }
-            state.filteredCards = state.allCards.filter(item =>
+            state.filteredCards = state.allCards?.filter(item =>
                 item.title.toLowerCase().includes(action.payload.toLowerCase())
             )
+        },
+        addSearchedItem:(state,action)=> {
+            state.searchedItem = action.payload;
+        },
+        addSortName:(state,action)=>{
+            state.sortName = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -63,6 +71,6 @@ const cardsSlice = createSlice({
 
 export const activeSelector = (state) => state.cards.activeSelector;
 export const filteredCards = (state) => state.cards.filteredCards;
-export const { setActiveSection, searchByName } = cardsSlice.actions;
+export const { setActiveSection, searchByName,addSearchedItem,addSortName } = cardsSlice.actions;
 
 export default cardsSlice.reducer;

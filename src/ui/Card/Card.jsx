@@ -52,8 +52,8 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
                     challenges whilst working to professional designs. `}
                 </p>
                     <div >
-                        {tags?.map((item,i)=>{
-                            return <button key={i} className='card__content__btn'>{item}</button>
+                        {tags?.map((item, i) => {
+                            return <button key={`${item}-${i}`} className='card__content__btn'>{item}</button>
                         })}
                     </div>
             </section>

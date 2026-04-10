@@ -1,13 +1,18 @@
 import './Input.scss';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchByName } from '../../store/slices/slice';
+import { searchByName,addSearchedItem } from '../../store/slices/slice';
+
 const Input = () => {
 
     const dispatch=useDispatch();
     const [text,setText] = useState('');
 
-    
+    useEffect(()=>{
+
+        dispatch(addSearchedItem(text))
+
+    },[text,dispatch]);
     
     return (
 

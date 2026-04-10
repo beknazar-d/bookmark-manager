@@ -31,8 +31,8 @@ const Sidebar = () => {
                 <span>TAGS</span>
                 <ul>
                     {
-                        listOfTags.map((item, i) => {
-                            return <li key={item+i}><NaviItem  variant={'tags'} checkbox={true} text={item} number={2} /></li>
+                        listOfTags.map((item) => {
+                            return <li key={item}><NaviItem variant={'tags'} checkbox={true} text={item} number={2} /></li>
                         })
                     }
                 </ul>

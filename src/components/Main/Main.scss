@@ -33,9 +33,8 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 32px 32px 0 32px;
+        padding: 32px 32px 10px 32px;
         background-color: var(--color-neutral-0);
-
         span {
             color: var(--cursor-color);
         }
