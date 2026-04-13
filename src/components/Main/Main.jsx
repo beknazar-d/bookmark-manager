@@ -10,6 +10,7 @@ import AddModal from '../../ui/addModal/addModal';
 import { useState, useEffect } from 'react';
 import { fetchCards } from '../../store/slices/slice';
 import { useSelector, useDispatch } from 'react-redux';
+import { sortCards } from '../../store/slices/slice';
 import switcher from '../../assets/switch-vertical.svg';
 const Main = () => {
 
@@ -27,7 +28,6 @@ const Main = () => {
         dispatch(fetchCards());
     }, [dispatch])
 
-    
 
     return (
         <div className='main-content'>
@@ -44,7 +44,7 @@ const Main = () => {
             <section className='main-content__underheader'>
                 <span>{searchedItem?`Results for: "${searchedItem}"`:'All Bookmarks'}</span>
                 <button onClick={()=>setShowSort(!showSort)}><img src={switcher} alt="switcher-icon" /> <span>Sort by</span></button>
-                <SDropdown show={showSort}/>
+                <SDropdown setShowSort={setShowSort} show={showSort}/>
             </section>
             <section className='main-content__cards'>
                 {status === 'loading' && <p>Загрузка...</p>}

@@ -19,5 +19,7 @@ export const sortCard = (bookmarks, sortBy) => {
         
         case 'most_visited':
             return bookmarks.sort((a,b) => b.visitCount - a.visitCount );
+        default:
+            return bookmarks
     }
 }
