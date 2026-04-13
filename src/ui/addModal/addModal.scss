@@ -1,0 +1,111 @@
+.add-modal-wrapper {
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+    background: transparent;
+    position: fixed;
+
+    .add-modal {
+        width: 570px;
+        height: fit-content;
+        position: absolute;
+        border-radius: 16px;
+        background-color: white;
+        color: var(--cursor-color);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        padding: 32px 32px;
+        left: 200px;
+        top: 100px;
+
+        &__header {
+            text-align: start;
+
+            img {
+                width: 20px;
+                height: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin: 0;
+                color: var(--cursor-color);
+            }
+
+            p {
+                font-size: 14px;
+                color: var(--color-neutral-800);
+            }
+
+            button {
+                position: absolute;
+                right: 28px;
+                top: 25px;
+                background: transparent;
+                box-sizing: border-box;
+                width: 32px;
+                height: 32px;
+                border: 1px solid var(--color-neutral-400);
+                border-radius: 8px;
+            }
+        }
+
+        &__description_wrapper {
+            span {
+                width: 100%;
+                text-align: end;
+                color: var(--color-neutral-400);
+            }
+        }
+
+        &__form {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            div {
+                width: 100%;
+                text-align: start;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                font-size: 14px;
+
+                #description {
+                    height: 91px;
+                    background: transparent;
+                    color: var(--cursor-color);
+                    border-radius: 8px;
+                }
+
+            }
+        }
+
+        .inputs {
+            box-sizing: border-box;
+            width: 100%;
+            border: 1px solid var(--color-neutral-500);
+            background: transparent;
+            border-radius: 8px;
+            outline: none;
+            padding: 12px 12px;
+            color: var(--cursor-color);
+        }
+
+        &__btns {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+    }
+
+}
+
+.none {
+    display: none;
+}

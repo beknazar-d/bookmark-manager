@@ -55,6 +55,9 @@
                 filter:var(--color-icon);
             }
         }
+        button:hover{
+            background-color: var(--color-neutral-100);
+        }
     }
 
    &__cards {

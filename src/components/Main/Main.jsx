@@ -6,6 +6,7 @@ import Card from '../../ui/Card/Card';
 import Button from '../../ui/Button/Button';
 import ProfileD from '../../ui/ProfileDropdown/ProfileDropdown';
 import SDropdown from '../../ui/sortDropdown/SortDropdown';
+import AddModal from '../../ui/addModal/addModal';
 import { useState, useEffect } from 'react';
 import { fetchCards } from '../../store/slices/slice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ const Main = () => {
 
     const [show, setShow] = useState(false);
     const [showSort, setShowSort] = useState(false);
+    const [showModal,setShowModal] = useState(false);
 
     const dispatch = useDispatch();
     const data = useSelector(state => state.cards);
@@ -29,12 +31,14 @@ const Main = () => {
 
     return (
         <div className='main-content'>
+            <AddModal showModal={showModal} setShowModal={setShowModal}/>
             <ProfileD show={show} />
             <header className='main-content__header'>
                 <Input />
                 <div className='main-content__right'>
-                    <Button variant={'primary'} icon={add} text={'Add Bookmark'} />
+                    <Button onClick={()=>setShowModal(!showModal)} variant={'primary'} icon={add} text={'Add Bookmark'} />
                     <img onClick={() => setShow(!show)} className={show ? 'main-content__avatar active_profile' : 'main-content__avatar'} src={avatar} alt="avatar" />
+                    
                 </div>
             </header>
             <section className='main-content__underheader'>

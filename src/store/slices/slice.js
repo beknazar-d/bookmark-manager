@@ -24,6 +24,17 @@ export const fetchCards = createAsyncThunk(
         return formattedData
     }
 );
+export const addCard = createAsyncThunk(
+    'cards/addCard',
+    async(bookmark) => {
+        const response = await fetch( `http://localhost:3001/bookmarks/`,{
+            method:'POST',
+            headers: {'Content-Type':'application/json'},
+            body:JSON.stringify(bookmark),
+        });
+        return response.json ();
+    }
+);
 
 
 const cardsSlice = createSlice({
@@ -47,7 +58,8 @@ const cardsSlice = createSlice({
         },
         addSortName:(state,action)=>{
             state.sortName = action.payload;
-        }
+        },
+        
     },
     extraReducers: (builder) => {
 
@@ -61,6 +73,18 @@ const cardsSlice = createSlice({
                 state.allCards = action.payload
             })
             .addCase(fetchCards.rejected, (state, action) => {
+                state.status = 'failed'
+                state.error = action.error.message
+            })
+        builder
+            .addCase(addCard.pending,(state)=>{
+                state.status = 'loading'
+            })
+            .addCase(addCard.fulfilled,(state,action)=>{
+                state.allCards.push(action.payload)
+                state.status = 'succeeded'
+            })
+            .addCase(addCard.rejected,(state,action)=>{
                 state.status = 'failed'
                 state.error = action.error.message
             })
