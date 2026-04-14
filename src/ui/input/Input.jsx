@@ -1,7 +1,7 @@
 import './Input.scss';
 import { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchByName,addSearchedItem } from '../../store/slices/slice';
+import {addSearchedItem } from '../../store/slices/slice';
 
 const Input = () => {
 
@@ -24,7 +24,7 @@ const Input = () => {
                 </svg>
                 <input onChange={(e)=>{
                     setText(e.target.value)
-                    dispatch(searchByName(e.target.value))
+                    dispatch(addSearchedItem(e.target.value))
                     }} value={text} name='search' type="text" placeholder="Search" />
             </div>
         </div>

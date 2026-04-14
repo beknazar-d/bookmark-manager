@@ -10,7 +10,6 @@ import AddModal from '../../ui/addModal/addModal';
 import { useState, useEffect } from 'react';
 import { fetchCards } from '../../store/slices/slice';
 import { useSelector, useDispatch } from 'react-redux';
-import { sortCards } from '../../store/slices/slice';
 import switcher from '../../assets/switch-vertical.svg';
 const Main = () => {
 
@@ -19,6 +18,7 @@ const Main = () => {
     const [showModal,setShowModal] = useState(false);
 
     const dispatch = useDispatch();
+    const sortName = useSelector(state=>state.cards.sortName);
     const data = useSelector(state => state.cards);
     const status = useSelector(state => state.cards.status);
     const error = useSelector(state => state.cards.error);
@@ -42,7 +42,7 @@ const Main = () => {
                 </div>
             </header>
             <section className='main-content__underheader'>
-                <span>{searchedItem?`Results for: "${searchedItem}"`:'All Bookmarks'}</span>
+                {sortName==='Archive'?<span>Archive</span>:<span>{searchedItem?`Results for: "${searchedItem}"`:'All Bookmarks'}</span>}
                 <button onClick={()=>setShowSort(!showSort)}><img src={switcher} alt="switcher-icon" /> <span>Sort by</span></button>
                 <SDropdown setShowSort={setShowSort} show={showSort}/>
             </section>

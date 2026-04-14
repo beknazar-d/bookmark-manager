@@ -10,7 +10,7 @@ const Dropdown = ({text,icon}) => {
                 <img src={icon?icon:link} alt="link-icon" />
                 <span>{text}</span>
             </div>
-            <img src={check} alt="check-icon" />
+            {/* <img src={check} alt="check-icon" /> */}
         </div>
     )
 };

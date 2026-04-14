@@ -1,18 +1,14 @@
 import './SortDropdown.scss';
 import check from '../../assets/images/icon-check.svg';
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addSortName, sortCards } from '../../store/slices/slice';
+import { addSortName } from '../../store/slices/slice';
 const SDropdown = ({ show, setShowSort }) => {
 
     const dispatch = useDispatch();
     const sort = useSelector(state => state.cards.sortName);
-    const allCards = useSelector(state => state.cards.allCards);
 
-    useEffect(() => {
-        dispatch(sortCards(allCards))
 
-    }, [dispatch, sort])
+    
 
     return (
         <div className={show ? 'sort-dropdown' : 'none'}>

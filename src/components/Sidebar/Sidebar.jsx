@@ -24,8 +24,8 @@ const Sidebar = () => {
                 <img className='sidebar__logo' src={theme === 'dark' ? darklogo : logo} alt="logo-icon" />
             </header>
             <section className='sidebar__selectors'>
-                <NaviItem variant={'navi'} text={'Home'} />
-                <NaviItem variant={'navi'} text={'Archive'} icon={archive} />
+                <NaviItem variant={'navi'}  text={'Home'} />
+                <NaviItem variant={'navi'}  text={'Archive'} icon={archive} />
             </section>
             <section className='sidebar__tags'>
                 <span>TAGS</span>

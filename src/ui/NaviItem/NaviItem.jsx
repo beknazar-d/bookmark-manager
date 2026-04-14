@@ -4,13 +4,15 @@ import check from '../../assets/images/icon-check.svg';
 import close from '../../assets/images/icon-close.svg';
 import CheckBox from '../Checkbox/CheckBox';
 import { useSelector, useDispatch } from 'react-redux';
-import { activeSelector, setActiveSection } from '../../store/slices/slice';
+import {setActiveSection} from '../../store/slices/slice';
 const NaviItem = ({ variant, number, onclick, icon, text }) => {
     const dispatch = useDispatch();
-    const active = useSelector(activeSelector);
+    const active = useSelector(state=>state.cards.activeSelector);
+    const Bookmarks = useSelector(state=>state.cards.allCards);
     const isActive = active === text;
+
     const Toast = (
-        <div className='toast'>
+    <div className='toast' >
             <div className='toast_left'>
                 <img className='toast_check' src={check} alt="check-icon" />
                 <span>Bookmark added successfully.</span>
@@ -21,6 +23,8 @@ const NaviItem = ({ variant, number, onclick, icon, text }) => {
 
     const Navi = (
         <div onClick={() => {
+            
+            
             if (text === 'Home' || text === 'Archive') {
                 dispatch(setActiveSection(text))
             }
