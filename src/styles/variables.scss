@@ -19,6 +19,8 @@
     --toggle-btn-color:#FFFFFF;
     --cursor-color:black;
     --color-icon:brightness(0);
+    --color-dialog:white;
+    --color-dialog-background:rgba(0, 0, 0, 0.55);
 
     --font-size-1: 24px;
     --font-size-2: 20px;
@@ -85,4 +87,6 @@
     --toggle-btn-color:#004241;
     --cursor-color:white;
     --color-icon:brightness(0) saturate(100%) invert(1);
+    --color-dialog:#001F1F;
+    --color-dialog-background:rgb(19,19,19,0.70)
 }

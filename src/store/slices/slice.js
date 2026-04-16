@@ -5,9 +5,10 @@ const initialState = {
     allCards: [],
     cards: [],
     filteredCards: [],
-    activeSelector: 'home',
+    activeSelector: 'Home',
     searchedItem: null,
     sortName: '',
+    cardToEdit:null,
     status: 'idle',
     error: null
 }
@@ -15,21 +16,21 @@ const initialState = {
 const applyFilters = (state) => {
     let result = state.allCards;
 
-    // 1. Home / Archive
-    if (state.activeSelector === 'home') {
+
+    if (state.activeSelector === 'Home') {
         result = state.allCards.filter(item => !item.isArchived);
     } else if (state.activeSelector === 'Archive') {
         result = state.allCards.filter(item => item.isArchived);
     }
 
-    // 2. Поиск
+
     if (state.searchedItem) {
         result = result.filter(item =>
             item.title.toLowerCase().includes(state.searchedItem.toLowerCase())
         );
     }
 
-    // 3. Сортировка
+
     if (state.sortName) {
         result = sortCard(result, state.sortName);
     }
@@ -63,6 +64,36 @@ export const addCard = createAsyncThunk(
         return response.json();
     }
 );
+export const updateCard = createAsyncThunk(
+    'cards/updateCard',
+    async ({ id, updates }, { getState }) => {
+        const state = getState();
+        const currentCard = state.cards.allCards.find((card) => card.id === id);
+
+        if (!currentCard) {
+            throw new Error(`Card with id ${id} not found`);
+        }
+
+        const cardToUpdate = {
+            ...currentCard,
+            ...updates,
+        };
+
+        const response = await fetch(`http://localhost:3001/bookmarks/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cardToUpdate),
+        });
+        const data = await response.json();
+        return {
+            ...data,
+            createdAtRaw: data.createdAt,
+            lastVisitedRaw: data.lastVisited,
+            createdAt: changeFormat(data.createdAt),
+            lastVisited: changeFormat(data.lastVisited),
+        };
+    }
+);
 
 const cardsSlice = createSlice({
     name: 'cards',
@@ -80,6 +111,12 @@ const cardsSlice = createSlice({
             state.sortName = action.payload;
             applyFilters(state);
         },
+        addCardToEdit:(state,action)=>{
+            if(!action.payload){
+                state.cardToEdit=null
+            }
+            state.cardToEdit = state.allCards.find(item=>item.id === action.payload)
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -109,6 +146,20 @@ const cardsSlice = createSlice({
             .addCase(addCard.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
+            })
+            .addCase(updateCard.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(updateCard.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.allCards = state.allCards.map((card) =>
+                    card.id === action.payload.id ? action.payload : card
+                );
+                applyFilters(state);
+            })
+            .addCase(updateCard.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message;
             });
     }
 });
@@ -116,5 +167,5 @@ const cardsSlice = createSlice({
 export const selectFilteredCards = (state) => state.cards.filteredCards;
 export const selectActiveSelector = (state) => state.cards.activeSelector;
 
-export const { setActiveSection, addSearchedItem, addSortName } = cardsSlice.actions;
+export const { setActiveSection, addSearchedItem, addSortName,addCardToEdit } = cardsSlice.actions;
 export default cardsSlice.reducer;

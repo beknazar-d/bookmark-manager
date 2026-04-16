@@ -27,8 +27,10 @@
       "pinned": false,
       "isArchived": false,
       "visitCount": 198,
-      "createdAt": "2024-01-05T06:00:00Z",
-      "lastVisited": "2025-09-24T15:30:00Z"
+      "createdAt": "5 Jan",
+      "lastVisited": "24 Sept",
+      "createdAtRaw": "5 Jan",
+      "lastVisitedRaw": "24 Sept"
     },
     {
       "id": "bm-002",
@@ -298,10 +300,12 @@
         "Reference"
       ],
       "pinned": false,
-      "isArchived": false,
+      "isArchived": true,
       "visitCount": 0,
-      "createdAt": "2024-02-20T14:30:00Z",
-      "lastVisited": null
+      "createdAt": "20 Feb",
+      "lastVisited": "1 Jan",
+      "createdAtRaw": "2024-02-20T14:30:00Z",
+      "lastVisitedRaw": null
     },
     {
       "id": "bm-018",
@@ -315,19 +319,12 @@
         "Layout"
       ],
       "pinned": false,
-      "isArchived": true,
+      "isArchived": false,
       "visitCount": 6,
-      "createdAt": "2024-02-22T08:50:00Z",
-      "lastVisited": "2025-04-18T15:30:00Z"
-    },
-    {
-      "id": "bm-1775912687749",
-      "title": "dadwda",
-      "url": "dqwdqwd",
-      "description": "dqwdqwdqwdqwd",
-      "tags": [
-        "dqwdqwd"
-      ]
+      "createdAt": "22 Feb",
+      "lastVisited": "18 Apr",
+      "createdAtRaw": "22 Feb",
+      "lastVisitedRaw": "18 Apr"
     }
   ]
 }

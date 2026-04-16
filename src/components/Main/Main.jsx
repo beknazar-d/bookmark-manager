@@ -8,9 +8,10 @@ import ProfileD from '../../ui/ProfileDropdown/ProfileDropdown';
 import SDropdown from '../../ui/sortDropdown/SortDropdown';
 import AddModal from '../../ui/addModal/addModal';
 import { useState, useEffect } from 'react';
-import { fetchCards } from '../../store/slices/slice';
+import { fetchCards,} from '../../store/slices/slice';
 import { useSelector, useDispatch } from 'react-redux';
 import switcher from '../../assets/switch-vertical.svg';
+import EditModal from '../../ui/EditModal/EditModal';
 const Main = () => {
 
     const [show, setShow] = useState(false);
@@ -23,6 +24,7 @@ const Main = () => {
     const status = useSelector(state => state.cards.status);
     const error = useSelector(state => state.cards.error);
     const searchedItem = useSelector(state => state.cards.searchedItem);
+    const editCArd = useSelector(state=>state.cards.cardToEdit);
 
     useEffect(() => {
         dispatch(fetchCards());
@@ -32,6 +34,7 @@ const Main = () => {
     return (
         <div className='main-content'>
             <AddModal showModal={showModal} setShowModal={setShowModal}/>
+            <EditModal key={editCArd?.id}/>
             <ProfileD show={show} />
             <header className='main-content__header'>
                 <Input />
@@ -50,10 +53,11 @@ const Main = () => {
                 {status === 'loading' && <p>Загрузка...</p>}
                 {status === 'failed' && <p>Ошибка: {error}</p>}
                 {status === 'succeeded' && (
-    (data.filteredCards?.length > 0 ? data.filteredCards : data.cards)?.map((item) => (
+    data.filteredCards?.map((item) => (
         <Card key={item.id} {...item} />
     ))
 )}
+            
             </section>
         </div>
     )

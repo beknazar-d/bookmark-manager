@@ -12,12 +12,12 @@ import visit from '../../assets/images/icon-visit.svg';
 import archive from '../../assets/images/icon-archive.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
+const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,createdAt,isArchived,id}) => {
+    const [isDialogOpen,setIsDialogOpen] = useState(false);
+    const [isOpen,setIsOpen] = useState(false);
 
-const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,createdAt}) => {
-
-    const [isOpen,setIsOpen]=useState(false);
-
-    const list =['visit', 'Copy URL','Unpin','Edit','Archive'];
+    const list =['visit', 'Copy URL','Unpin','Edit', isArchived ? 'Unarchive' : 'Archive'];
     const icons =[visit,copy,unpin,edit,archive];
 
     const cardsDropdown=(
@@ -25,7 +25,16 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
             <ul>
                 {
                     list.map((item,i)=>{
-                        return <Dropdown key={item+i} icon={icons[i]} text={item}/>
+                        return (
+                            <Dropdown
+                                setIsOpen={setIsOpen}
+                                key={item+i}
+                                icon={icons[i]}
+                                id={id}
+                                text={item}
+                                onClick={item === 'Archive' || item === 'Unarchive' ? () => setIsDialogOpen(true) : null}
+                            />
+                        )
                     })
                 }
             </ul>
@@ -35,6 +44,12 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
     return (
         <div className='card'>
             {cardsDropdown}
+            <ConfirmDialog
+                cardId={id}
+                isArchived={isArchived}
+                showDialog={isDialogOpen}
+                onClose={() => setIsDialogOpen(false)}
+            />
             <section className='card__header'>
                 <img className='card__logo' src={favicon?favicon:avatar} alt="avatar" />
                 <div className='card__info'>
