@@ -14,7 +14,7 @@ const initialState = {
 }
 
 const applyFilters = (state) => {
-    let result = state.allCards;
+    let result = state.allCards.sort((a,b)=>b.pinned - a.pinned);
 
 
     if (state.activeSelector === 'Home') {
@@ -34,6 +34,7 @@ const applyFilters = (state) => {
     if (state.sortName) {
         result = sortCard(result, state.sortName);
     }
+    
 
     state.filteredCards = result;
 };
@@ -116,7 +117,17 @@ const cardsSlice = createSlice({
                 state.cardToEdit=null
             }
             state.cardToEdit = state.allCards.find(item=>item.id === action.payload)
-        }
+        },
+        pinnCard: (state, action) => {
+        state.allCards = state.allCards
+        .map((item) => {
+            if (item.id === action.payload) {
+                return { ...item, pinned: !item.pinned }; // toggle
+            }
+            return item;
+        })
+        applyFilters(state)
+}
     },
     extraReducers: (builder) => {
         builder
@@ -167,5 +178,5 @@ const cardsSlice = createSlice({
 export const selectFilteredCards = (state) => state.cards.filteredCards;
 export const selectActiveSelector = (state) => state.cards.activeSelector;
 
-export const { setActiveSection, addSearchedItem, addSortName,addCardToEdit } = cardsSlice.actions;
+export const { setActiveSection, addSearchedItem, addSortName,addCardToEdit,pinnCard } = cardsSlice.actions;
 export default cardsSlice.reducer;

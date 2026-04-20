@@ -1,7 +1,7 @@
 import './Dropdown.scss';
 import link from '../../assets/images/link.svg';
 import { useDispatch } from 'react-redux';
-import { addCardToEdit } from '../../store/slices/slice';
+import { addCardToEdit,pinnCard } from '../../store/slices/slice';
 
 const Dropdown = ({text,icon,setIsOpen,onClick,id}) => {
     
@@ -16,7 +16,11 @@ const Dropdown = ({text,icon,setIsOpen,onClick,id}) => {
             if(text==='Edit') {
                 dispatch(addCardToEdit(id))
             }
-            setIsOpen(false);
+            if(text==='Unpin') {
+                dispatch(pinnCard(id))
+            }
+            
+                setIsOpen(false);
         }} className='dropdown'>
             <div className='dropdown_left'>
                 <img src={icon?icon:link} alt="link-icon" />

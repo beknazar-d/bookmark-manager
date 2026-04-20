@@ -13,11 +13,11 @@ import archive from '../../assets/images/icon-archive.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
-const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,createdAt,isArchived,id}) => {
+const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,createdAt,isArchived,id,pinned}) => {
     const [isDialogOpen,setIsDialogOpen] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
 
-    const list =['visit', 'Copy URL','Unpin','Edit', isArchived ? 'Unarchive' : 'Archive'];
+    const list =['visit', 'Copy URL',pinned?'Unpin':'Pin','Edit', isArchived ? 'Unarchive' : 'Archive'];
     const icons =[visit,copy,unpin,edit,archive];
 
     const cardsDropdown=(
@@ -77,7 +77,7 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
                 <div><img src={eye} alt="eye" /><span>{visitCount?visitCount:'47'}</span></div>
                 <div><img src={hour} alt="hour" /> <span>{lastVisited?lastVisited:'23 Sep'}</span></div>
                 <div><img src={data} alt="data" /><span>{createdAt?createdAt:'15 Jan'}</span></div>
-                <img className='footer_img' src={pin} alt="pin" />
+                {pinned?<img className='footer_img' src={pin} alt="pin" />:null}
             </section>
         </div>
     )
