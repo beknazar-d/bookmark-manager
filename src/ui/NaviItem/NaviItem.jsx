@@ -4,15 +4,24 @@ import check from '../../assets/images/icon-check.svg';
 import close from '../../assets/images/icon-close.svg';
 import CheckBox from '../Checkbox/CheckBox';
 import { useSelector, useDispatch } from 'react-redux';
-import {setActiveSection} from '../../store/slices/slice';
+import { setActiveSection, setActiveTag } from '../../store/slices/slice';
 const NaviItem = ({ variant, number, onclick, icon, text }) => {
     const dispatch = useDispatch();
-    const active = useSelector(state=>state.cards.activeSelector);
-    const Bookmarks = useSelector(state=>state.cards.allCards);
+    const active = useSelector(state => state.cards.activeSelector);
+    const Bookmarks = useSelector(state => state.cards.allCards);
     const isActive = active === text;
+    
+    
+
+    const getTagCount = (bookmarks, targetTag) =>
+        bookmarks.reduce((count, bookmark) => {
+            return count + (bookmark.tags.includes(targetTag) ? 1 : 0);
+        }, 0);
+
+        const tagsCount = getTagCount(Bookmarks,text);
 
     const Toast = (
-    <div className='toast' >
+        <div className='toast' >
             <div className='toast_left'>
                 <img className='toast_check' src={check} alt="check-icon" />
                 <span>Bookmark added successfully.</span>
@@ -23,8 +32,8 @@ const NaviItem = ({ variant, number, onclick, icon, text }) => {
 
     const Navi = (
         <div onClick={() => {
-            
-            
+
+
             if (text === 'Home' || text === 'Archive') {
                 dispatch(setActiveSection(text))
             }
@@ -38,13 +47,13 @@ const NaviItem = ({ variant, number, onclick, icon, text }) => {
     );
 
     const tag = (
-        <div className='tags'>
+        <div className='tags' onClick={() => { dispatch(setActiveTag(text)) }}>
             <div className='tags__left'>
-                <CheckBox />
+                <CheckBox text={text} />
                 <span>{text ? text : 'AI'}</span>
             </div>
-            {number ? <span className='tags__count'>
-                {number}
+            {tagsCount ? <span className='tags__count'>
+                {tagsCount===0?'0':tagsCount}
             </span> : null}
         </div>
     );

@@ -46,8 +46,10 @@
       "pinned": false,
       "isArchived": false,
       "visitCount": 234,
-      "createdAt": "2024-01-08T07:30:00Z",
-      "lastVisited": "2025-09-24T11:00:00Z"
+      "createdAt": "8 Jan",
+      "lastVisited": "24 Sept",
+      "createdAtRaw": "8 Jan",
+      "lastVisitedRaw": "24 Sept"
     },
     {
       "id": "bm-003",
@@ -62,10 +64,12 @@
         "JavaScript"
       ],
       "pinned": true,
-      "isArchived": false,
+      "isArchived": true,
       "visitCount": 152,
-      "createdAt": "2024-01-10T08:15:00Z",
-      "lastVisited": "2025-09-24T09:20:00Z"
+      "createdAt": "10 Jan",
+      "lastVisited": "24 Sept",
+      "createdAtRaw": "10 Jan",
+      "lastVisitedRaw": "24 Sept"
     },
     {
       "id": "bm-004",
@@ -98,8 +102,10 @@
       "pinned": true,
       "isArchived": false,
       "visitCount": 47,
-      "createdAt": "2024-01-15T10:30:00Z",
-      "lastVisited": "2025-09-23T14:45:00Z"
+      "createdAt": "15 Jan",
+      "lastVisited": "23 Sept",
+      "createdAtRaw": "15 Jan",
+      "lastVisitedRaw": "23 Sept"
     },
     {
       "id": "bm-006",
@@ -115,8 +121,10 @@
       "pinned": false,
       "isArchived": false,
       "visitCount": 23,
-      "createdAt": "2024-01-18T13:20:00Z",
-      "lastVisited": "2025-09-10T11:15:00Z"
+      "createdAt": "18 Jan",
+      "lastVisited": "10 Sept",
+      "createdAtRaw": "2024-01-18T13:20:00Z",
+      "lastVisitedRaw": "2025-09-10T11:15:00Z"
     },
     {
       "id": "bm-007",
@@ -231,11 +239,13 @@
         "Learning",
         "Tips"
       ],
-      "pinned": false,
+      "pinned": true,
       "isArchived": false,
       "visitCount": 19,
-      "createdAt": "2024-02-10T15:00:00Z",
-      "lastVisited": "2025-09-21T08:45:00Z"
+      "createdAt": "10 Feb",
+      "lastVisited": "21 Sept",
+      "createdAtRaw": "2024-02-10T15:00:00Z",
+      "lastVisitedRaw": "2025-09-21T08:45:00Z"
     },
     {
       "id": "bm-014",
@@ -265,11 +275,13 @@
         "Learning",
         "Tips"
       ],
-      "pinned": false,
+      "pinned": true,
       "isArchived": false,
       "visitCount": 15,
-      "createdAt": "2024-02-15T12:20:00Z",
-      "lastVisited": "2025-08-16T14:55:00Z"
+      "createdAt": "15 Feb",
+      "lastVisited": "16 Aug",
+      "createdAtRaw": "2024-02-15T12:20:00Z",
+      "lastVisitedRaw": "2025-08-16T14:55:00Z"
     },
     {
       "id": "bm-016",
@@ -282,11 +294,13 @@
         "AI",
         "Learning"
       ],
-      "pinned": false,
+      "pinned": true,
       "isArchived": false,
       "visitCount": 73,
-      "createdAt": "2024-02-18T10:15:00Z",
-      "lastVisited": "2025-09-23T11:20:00Z"
+      "createdAt": "18 Feb",
+      "lastVisited": "23 Sept",
+      "createdAtRaw": "2024-02-18T10:15:00Z",
+      "lastVisitedRaw": "2025-09-23T11:20:00Z"
     },
     {
       "id": "bm-017",
@@ -318,7 +332,7 @@
         "Practice",
         "Layout"
       ],
-      "pinned": false,
+      "pinned": true,
       "isArchived": false,
       "visitCount": 6,
       "createdAt": "22 Feb",
