@@ -10,15 +10,15 @@ const NaviItem = ({ variant, number, onclick, icon, text }) => {
     const active = useSelector(state => state.cards.activeSelector);
     const Bookmarks = useSelector(state => state.cards.allCards);
     const isActive = active === text;
-    
-    
+
+
 
     const getTagCount = (bookmarks, targetTag) =>
         bookmarks.reduce((count, bookmark) => {
             return count + (bookmark.tags.includes(targetTag) ? 1 : 0);
         }, 0);
 
-        const tagsCount = getTagCount(Bookmarks,text);
+    const tagsCount = getTagCount(Bookmarks, text);
 
     const Toast = (
         <div className='toast' >
@@ -52,9 +52,9 @@ const NaviItem = ({ variant, number, onclick, icon, text }) => {
                 <CheckBox text={text} />
                 <span>{text ? text : 'AI'}</span>
             </div>
-            {tagsCount ? <span className='tags__count'>
-                {tagsCount===0?'0':tagsCount}
-            </span> : null}
+            <span className='tags__count'>
+                {tagsCount === 0 ? 0 : tagsCount}
+            </span>
         </div>
     );
 
