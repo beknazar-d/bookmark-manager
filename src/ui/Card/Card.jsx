@@ -11,14 +11,14 @@ import copy from '../../assets/images/icon-copy.svg';
 import visit from '../../assets/images/icon-visit.svg';
 import archive from '../../assets/images/icon-archive.svg';
 import Dropdown from '../Dropdown/Dropdown';
-import { useState,useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
 const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,createdAt,isArchived,id,pinned}) => {
     const [isDialogOpen,setIsDialogOpen] = useState(false);
     const [isOpen,setIsOpen] = useState(false);
     const dropdownRef= useRef();
     const list =['visit', 'Copy URL',pinned?'Unpin':'Pin','Edit', isArchived ? 'Unarchive' : 'Archive'];
-    const icons =[visit,copy,unpin,edit,archive];
+    const icons =[visit,copy,pinned ? unpin : pin,edit,archive];
 
     const cardsDropdown=(
         <div className={isOpen?'card-dropdown':'card-dropdown hide'}>
@@ -32,6 +32,7 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
                                 key={item+i}
                                 icon={icons[i]}
                                 id={id}
+                                url={url}
                                 text={item}
                                 onClick={item === 'Archive' || item === 'Unarchive' ? () => setIsDialogOpen(true) : null}
                             />
@@ -43,7 +44,7 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
     );
 
     return (
-        <div div className='card' ref={dropdownRef}>
+        <div className='card' ref={dropdownRef}>
             {cardsDropdown}
             <ConfirmDialog
                 cardId={id}

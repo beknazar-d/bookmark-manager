@@ -1,5 +1,5 @@
 // EditModal/EditModal.jsx
-import {  useState } from 'react';
+import { useState } from 'react';
 import './editModal.scss';
 import close from '../../assets/images/icon-close.svg';
 import Button from '../Button/Button';
@@ -18,23 +18,21 @@ const EditModal = () => {
             tags: cardToEdit?.tags?.join(', ') || '',
         });
 
-
-
-
-
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = () => {
-        const updatedBookmark = {
-            ...cardToEdit,
-            title: form.title,
-            url: form.url,
-            description: form.description,
-            tags: form.tags.split(',').map(tag => tag.trim()).filter(Boolean),
-        };
-        dispatch(updateCard({ updatedBookmark }));
+        if (!cardToEdit?.id) return;
+        dispatch(updateCard({
+            id: cardToEdit.id,
+            updates: {
+                title: form.title,
+                url: form.url,
+                description: form.description,
+                tags: form.tags.split(',').map(tag => tag.trim()).filter(Boolean),
+            }
+        }));
         dispatch(addCardToEdit(null))
     };
 

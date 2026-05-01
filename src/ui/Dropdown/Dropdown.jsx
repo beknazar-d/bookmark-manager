@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCardToEdit, updateCard } from '../../store/slices/slice';
 import { useEffect } from 'react';
 
-const Dropdown = ({ text, icon, setIsOpen, onClick, id, dropdownRef }) => {
+const Dropdown = ({ text,url ,icon, setIsOpen, onClick, id, dropdownRef }) => {
 
 
     const dispatch = useDispatch();
@@ -27,7 +27,13 @@ const Dropdown = ({ text, icon, setIsOpen, onClick, id, dropdownRef }) => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []);
+    }, [dropdownRef, setIsOpen]);
+
+    const handleVisit = () => {
+        if (!url) return;
+        const normalizedUrl = /^https?:\/\//i.test(url) ? url : `https://${url}`;
+        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
+    };
 
     return (
         <div
@@ -43,6 +49,18 @@ const Dropdown = ({ text, icon, setIsOpen, onClick, id, dropdownRef }) => {
                         id,
                         updates: { pinned: !currentCard.pinned }
                     }));
+                }
+                if(text === 'visit') {
+                    const now = new Date().toISOString();
+                    dispatch(updateCard({
+                        id,
+                        updates:{
+                            visitCount:(currentCard?.visitCount || 0)+1,
+                            lastVisited: now,
+                            lastVisitedRaw: now
+                        }
+                    }))
+                    handleVisit();
                 }
 
                 setIsOpen(false);

@@ -5,7 +5,7 @@ import close from '../../assets/images/icon-close.svg';
 import CheckBox from '../Checkbox/CheckBox';
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveSection, setActiveTag } from '../../store/slices/slice';
-const NaviItem = ({ variant, number, onclick, icon, text }) => {
+const NaviItem = ({ variant,onclick, icon, text }) => {
     const dispatch = useDispatch();
     const active = useSelector(state => state.cards.activeSelector);
     const Bookmarks = useSelector(state => state.cards.allCards);
