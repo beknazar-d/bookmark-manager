@@ -35,6 +35,7 @@
         justify-content: space-between;
         padding: 32px 32px 10px 32px;
         background-color: var(--color-neutral-0);
+
         span {
             color: var(--cursor-color);
         }
@@ -51,53 +52,63 @@
             background-color: var(--color-neutral-0);
             border-radius: 8px;
             border: 1px solid var(--color-neutral-400);
-            img{
-                filter:var(--color-icon);
+
+            img {
+                filter: var(--color-icon);
             }
         }
-        button:hover{
+
+        button:hover {
             background-color: var(--color-neutral-100);
         }
     }
 
-   &__cards {
-    width: 100%;
-    height: 797px;
-    padding: 32px;
-    display: grid;
-    grid-template-columns: repeat(3, 338px);
-    gap: 32px;
-    background-color: var(--color-neutral-0);
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+    &__cards {
+        width: 100%;
+        height: 797px;
+        padding: 32px;
+        display: grid;
+        grid-template-columns: repeat(3, 338px);
+        gap: 32px;
+        background-color: var(--color-neutral-0);
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
 
-    /* Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: #bbb #f0f0f0;
+
+        scrollbar-width: thin;
+        scrollbar-color: #bbb #f0f0f0;
+    }
+
+    &__cards::-webkit-scrollbar {
+        width: 8px;
+
+    }
+
+    &__cards::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 8px;
+    }
+
+    &__cards::-webkit-scrollbar-thumb {
+        background-color: #bbb;
+        border-radius: 8px;
+        border: 2px solid #f0f0f0;
+
+    }
+
+    &__cards::-webkit-scrollbar-thumb:hover {
+        background-color: #999;
+    }
+
 }
 
-/* Chrome, Edge, Safari */
-&__cards::-webkit-scrollbar {
-    width: 8px; /* толщина вертикального скролла */
-}
-
-&__cards::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 8px;
-}
-
-&__cards::-webkit-scrollbar-thumb {
-    background-color: #bbb;
-    border-radius: 8px;
-    border: 2px solid #f0f0f0; /* отступ вокруг ползунка */
-}
-
-&__cards::-webkit-scrollbar-thumb:hover {
-    background-color: #999;
-}
-
+@media (max-width:768px) {
+    .main-content{
+        width: 768px;
+        
+    }
 }
 
 .active_profile {

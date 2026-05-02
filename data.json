@@ -240,13 +240,13 @@
         "Learning",
         "Tips"
       ],
-      "pinned": true,
+      "pinned": false,
       "isArchived": false,
       "visitCount": 19,
       "createdAt": "10 Feb",
       "lastVisited": "21 Sept",
-      "createdAtRaw": "2024-02-10T15:00:00Z",
-      "lastVisitedRaw": "2025-09-21T08:45:00Z"
+      "createdAtRaw": "10 Feb",
+      "lastVisitedRaw": "21 Sept"
     },
     {
       "id": "bm-014",
