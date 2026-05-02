@@ -99,11 +99,11 @@
         "Learning",
         "Community"
       ],
-      "pinned": true,
+      "pinned": false,
       "isArchived": false,
       "visitCount": 51,
       "createdAt": "15 Jan",
-      "lastVisited": "2026-04-30T14:02:40.007Z",
+      "lastVisited": "30 Apr",
       "createdAtRaw": "15 Jan",
       "lastVisitedRaw": "2026-04-30T14:02:40.007Z",
       "visit": 48
@@ -276,13 +276,13 @@
         "Learning",
         "Tips"
       ],
-      "pinned": true,
+      "pinned": false,
       "isArchived": false,
       "visitCount": 15,
       "createdAt": "15 Feb",
       "lastVisited": "16 Aug",
-      "createdAtRaw": "2024-02-15T12:20:00Z",
-      "lastVisitedRaw": "2025-08-16T14:55:00Z"
+      "createdAtRaw": "15 Feb",
+      "lastVisitedRaw": "16 Aug"
     },
     {
       "id": "bm-016",
@@ -333,7 +333,7 @@
         "Practice",
         "Layout"
       ],
-      "pinned": true,
+      "pinned": false,
       "isArchived": false,
       "visitCount": 6,
       "createdAt": "22 Feb",

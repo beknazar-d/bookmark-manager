@@ -8,15 +8,15 @@ const initialState = {
     activeSelector: 'Home',
     searchedItem: null,
     sortName: '',
-    activeTag: '',
+    activeTags: [],
     cardToEdit: null,
     status: 'idle',
     error: null
 }
 
+
 const applyFilters = (state) => {
     let result = state.allCards.sort((a, b) => b.pinned - a.pinned);
-
 
     if (state.activeSelector === 'Home') {
         result = state.allCards.filter(item => !item.isArchived);
@@ -24,21 +24,21 @@ const applyFilters = (state) => {
         result = state.allCards.filter(item => item.isArchived);
     }
 
-
     if (state.searchedItem) {
         result = result.filter(item =>
             item.title.toLowerCase().includes(state.searchedItem.toLowerCase())
         );
     }
 
-
     if (state.sortName) {
         result = sortCard(result, state.sortName);
     }
-    if (state.activeTag) {
-        result = result.filter(item => item.tags.includes(state.activeTag));
-    }
 
+    if (state.activeTags && state.activeTags.length > 0) {
+        result = result.filter(item =>
+            item.tags.some(tag => state.activeTags.includes(tag))
+        );
+    }
 
     state.filteredCards = result;
 };
@@ -123,13 +123,17 @@ const cardsSlice = createSlice({
             state.cardToEdit = state.allCards.find(item => item.id === action.payload)
         },
         setActiveTag: (state, action) => {
-                if (state.activeTag === action.payload) {
-        state.activeTag = null;
-    } else {
-        state.activeTag = action.payload;
-    }
+            const tag = action.payload;
 
-            applyFilters(state)
+            if (state.activeTags.includes(tag)) {
+
+                state.activeTags = state.activeTags.filter(t => t !== tag);
+            } else {
+
+                state.activeTags.push(tag);
+            }
+
+            applyFilters(state);
         }
     },
     extraReducers: (builder) => {
@@ -180,7 +184,7 @@ const cardsSlice = createSlice({
 
 export const selectFilteredCards = (state) => state.cards.filteredCards;
 export const selectActiveSelector = (state) => state.cards.activeSelector;
-export const selectActiveTag = (state) => state.cards.activeTag;
+export const selectActiveTags = (state) => state.cards.activeTags;
 
 export const { setActiveSection, addSearchedItem, addSortName, addCardToEdit, setActiveTag } = cardsSlice.actions;
 export default cardsSlice.reducer;

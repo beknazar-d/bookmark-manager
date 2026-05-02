@@ -21,3 +21,9 @@ export const sortCard = (bookmarks, sortBy) => {
             return bookmarks;
     }
 };
+
+export const sortTags=(allCards,activeTags)=>{
+        allCards.filter((item)=>{
+            activeTags.includes(item)
+        })
+}

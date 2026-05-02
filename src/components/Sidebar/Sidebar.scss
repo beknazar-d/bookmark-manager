@@ -6,16 +6,16 @@
     flex-direction: column;
     background-color: var(--color-neutral-0);
     &__header{
-        padding-left: 20px;
-        img{
-            
-        }
+        padding-left: 10px;
+        padding-top:10px ;
+        padding-bottom: 5px;
     }
     
     &__logo{
         display: block;
         height: 32px;
         box-sizing: border-box;
+        
     }
     &__selectors{
         display: flex;
