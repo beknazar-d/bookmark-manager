@@ -58,6 +58,19 @@ export const fetchCards = createAsyncThunk(
     }
 );
 
+export const deleteCard = createAsyncThunk('cards/deleteCard', async (id) => {
+    const response = await fetch(`http://localhost:3001/bookmarks/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to delete card');
+    }
+
+    return id;
+});
+
 export const addCard = createAsyncThunk(
     'cards/addCard',
     async (bookmark) => {
@@ -179,6 +192,12 @@ const cardsSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.error.message;
             });
+
+        builder
+            .addCase(deleteCard.fulfilled, (state, action) => {
+                state.allCards = state.allCards.filter(card => card.id !== action.payload);
+                applyFilters(state);
+            })
     }
 });
 

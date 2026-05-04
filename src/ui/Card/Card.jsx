@@ -10,31 +10,37 @@ import edit from '../../assets/images/icon-edit.svg';
 import copy from '../../assets/images/icon-copy.svg';
 import visit from '../../assets/images/icon-visit.svg';
 import archive from '../../assets/images/icon-archive.svg';
+import Delete from '../../assets/images/icon-delete.svg';
 import Dropdown from '../Dropdown/Dropdown';
 import { useState, useRef } from 'react';
 import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
-const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,createdAt,isArchived,id,pinned}) => {
-    const [isDialogOpen,setIsDialogOpen] = useState(false);
-    const [isOpen,setIsOpen] = useState(false);
-    const dropdownRef= useRef();
-    const list =['visit', 'Copy URL',pinned?'Unpin':'Pin','Edit', isArchived ? 'Unarchive' : 'Archive'];
-    const icons =[visit,copy,pinned ? unpin : pin,edit,archive];
+const Card = ({ icon, favicon, title, description, tags, url, visitCount, lastVisited, createdAt, isArchived, id, pinned }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [dialogType, setDialogType] = useState(null);
+    const dropdownRef = useRef();
+    const list = ['visit', 'Copy URL', pinned ? 'Unpin' : 'Pin', 'Edit', isArchived ? 'Unarchive' : 'Archive', isArchived ? 'Delete' : null].filter(Boolean);
+    const icons = [visit, copy, pinned ? unpin : pin, edit, archive, isArchived ? Delete : null].filter(Boolean);
 
-    const cardsDropdown=(
-        <div className={isOpen?'card-dropdown':'card-dropdown hide'}>
+    const cardsDropdown = (
+        <div className={isOpen ? 'card-dropdown' : 'card-dropdown hide'}>
             <ul>
                 {
-                    list.map((item,i)=>{
+                    list.map((item, i) => {
                         return (
                             <Dropdown
                                 dropdownRef={dropdownRef}
                                 setIsOpen={setIsOpen}
-                                key={item+i}
+                                key={item + i}
                                 icon={icons[i]}
                                 id={id}
                                 url={url}
                                 text={item}
-                                onClick={item === 'Archive' || item === 'Unarchive' ? () => setIsDialogOpen(true) : null}
+                                isArchived={isArchived}
+                                onClick={
+                                    item === 'Archive' || item === 'Unarchive' ? () => setDialogType('archive') :
+                                        item === 'Delete' ? () => setDialogType('delete') :
+                                            null
+                                }
                             />
                         )
                     })
@@ -46,40 +52,43 @@ const Card = ({icon,favicon ,title,description,tags,url,visitCount,lastVisited,c
     return (
         <div className='card' ref={dropdownRef}>
             {cardsDropdown}
-            <ConfirmDialog
-                cardId={id}
-                isArchived={isArchived}
-                showDialog={isDialogOpen}
-                onClose={() => setIsDialogOpen(false)}
-            />
+            {dialogType && (
+    <ConfirmDialog
+        cardId={id}
+        isArchived={isArchived}
+        showDialog={dialogType !== null}
+        onClose={() => setDialogType(null)}
+        type={dialogType}
+    />
+)}
             <section className='card__header'>
-                <img className='card__logo' src={favicon?favicon:avatar} alt="avatar" />
+                <img className='card__logo' src={favicon ? favicon : avatar} alt="avatar" />
                 <div className='card__info'>
-                <span className='card__header__text'> {title?title:'Frontend Mentor'}</span>
-                <span className='card__header__undertext'>{url?url:'frontendmentor.io'}</span>
+                    <span className='card__header__text'> {title ? title : 'Frontend Mentor'}</span>
+                    <span className='card__header__undertext'>{url ? url : 'frontendmentor.io'}</span>
                 </div>
-                <button onClick={()=>setIsOpen(!isOpen)} className='card__btn'><img src={icon?icon: menuIcon} alt="menu-icon" /></button>
+                <button onClick={() => setIsOpen(!isOpen)} className='card__btn'><img src={icon ? icon : menuIcon} alt="menu-icon" /></button>
             </section>
             <hr />
             <section className='card__content'>
                 <p>
-                    {description?description:`Improve your front-end coding skills by building real projects.
+                    {description ? description : `Improve your front-end coding skills by building real projects.
                     Solve real-world HTML,
                     CSS and JavaScript
                     challenges whilst working to professional designs. `}
                 </p>
-                    <div >
-                        {tags?.map((item, i) => {
-                            return <button key={`${item}-${i}`} className='card__content__btn'>{item}</button>
-                        })}
-                    </div>
+                <div >
+                    {tags?.map((item, i) => {
+                        return <button key={`${item}-${i}`} className='card__content__btn'>{item}</button>
+                    })}
+                </div>
             </section>
 
             <section className='card__footer'>
-                <div><img src={eye} alt="eye" /><span>{visitCount?visitCount:'47'}</span></div>
-                <div><img src={hour} alt="hour" /> <span>{lastVisited?lastVisited:'23 Sep'}</span></div>
-                <div><img src={data} alt="data" /><span>{createdAt?createdAt:'15 Jan'}</span></div>
-                {pinned?<img className='footer_img' src={pin} alt="pin" />:null}
+                <div><img src={eye} alt="eye" /><span>{visitCount ? visitCount : '47'}</span></div>
+                <div><img src={hour} alt="hour" /> <span>{lastVisited ? lastVisited : '23 Sep'}</span></div>
+                <div><img src={data} alt="data" /><span>{createdAt ? createdAt : '15 Jan'}</span></div>
+                {pinned ? <img className='footer_img' src={pin} alt="pin" /> : null}
             </section>
         </div>
     )

@@ -33,45 +33,6 @@
       "lastVisitedRaw": "24 Sept"
     },
     {
-      "id": "bm-002",
-      "title": "Stack Overflow",
-      "url": "https://stackoverflow.com",
-      "favicon": "./assets/images/favicon-stack-overflow.png",
-      "description": "The largest, most trusted online community for developers to learn, share their knowledge, and build their careers.",
-      "tags": [
-        "Community",
-        "Reference",
-        "Tips"
-      ],
-      "pinned": false,
-      "isArchived": false,
-      "visitCount": 234,
-      "createdAt": "8 Jan",
-      "lastVisited": "24 Sept",
-      "createdAtRaw": "8 Jan",
-      "lastVisitedRaw": "24 Sept"
-    },
-    {
-      "id": "bm-003",
-      "title": "MDN Web Docs",
-      "url": "https://developer.mozilla.org",
-      "favicon": "./assets/images/favicon-mdn.png",
-      "description": "The MDN Web Docs site provides information about Open Web technologies including HTML, CSS, and APIs for both Web sites and progressive web apps.",
-      "tags": [
-        "Reference",
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "pinned": true,
-      "isArchived": true,
-      "visitCount": 152,
-      "createdAt": "10 Jan",
-      "lastVisited": "24 Sept",
-      "createdAtRaw": "10 Jan",
-      "lastVisitedRaw": "24 Sept"
-    },
-    {
       "id": "bm-004",
       "title": "CSS-Tricks",
       "url": "https://css-tricks.com",
@@ -179,23 +140,6 @@
       "lastVisited": "2025-07-15T15:45:00Z"
     },
     {
-      "id": "bm-010",
-      "title": "Flexbox Froggy",
-      "url": "https://flexboxfroggy.com",
-      "favicon": "./assets/images/favicon-flexbox-froggy.png",
-      "description": "A game where you help Froggy and friends by writing CSS flexbox code.",
-      "tags": [
-        "CSS",
-        "Practice",
-        "Layout"
-      ],
-      "pinned": false,
-      "isArchived": true,
-      "visitCount": 12,
-      "createdAt": "2024-02-01T09:30:00Z",
-      "lastVisited": "2025-06-12T14:20:00Z"
-    },
-    {
       "id": "bm-011",
       "title": "freeCodeCamp",
       "url": "https://www.freecodecamp.org",
@@ -295,13 +239,13 @@
         "AI",
         "Learning"
       ],
-      "pinned": true,
+      "pinned": false,
       "isArchived": false,
       "visitCount": 73,
       "createdAt": "18 Feb",
       "lastVisited": "23 Sept",
-      "createdAtRaw": "2024-02-18T10:15:00Z",
-      "lastVisitedRaw": "2025-09-23T11:20:00Z"
+      "createdAtRaw": "18 Feb",
+      "lastVisitedRaw": "23 Sept"
     },
     {
       "id": "bm-017",

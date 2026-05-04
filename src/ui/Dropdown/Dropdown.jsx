@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCardToEdit, updateCard } from '../../store/slices/slice';
 import { useEffect } from 'react';
 
-const Dropdown = ({ text,url ,icon, setIsOpen, onClick, id, dropdownRef }) => {
+const Dropdown = ({ text, url, icon, setIsOpen, onClick, id, dropdownRef,isArchived }) => {
 
 
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Dropdown = ({ text,url ,icon, setIsOpen, onClick, id, dropdownRef }) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            
+
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false);
             }
@@ -23,7 +23,7 @@ const Dropdown = ({ text,url ,icon, setIsOpen, onClick, id, dropdownRef }) => {
 
         document.addEventListener("mousedown", handleClickOutside);
 
-        
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
@@ -50,21 +50,23 @@ const Dropdown = ({ text,url ,icon, setIsOpen, onClick, id, dropdownRef }) => {
                         updates: { pinned: !currentCard.pinned }
                     }));
                 }
-                if(text === 'visit') {
+                if (text === 'visit') {
                     const now = new Date().toISOString();
                     dispatch(updateCard({
                         id,
-                        updates:{
-                            visitCount:(currentCard?.visitCount || 0)+1,
+                        updates: {
+                            visitCount: (currentCard?.visitCount || 0) + 1,
                             lastVisited: now,
                             lastVisitedRaw: now
                         }
                     }))
                     handleVisit();
                 }
+                
 
                 setIsOpen(false);
             }} className='dropdown'>
+
             <div className='dropdown_left'>
                 <img src={icon ? icon : link} alt="link-icon" />
                 <span>{text}</span>
